@@ -19,3 +19,24 @@ function createMarkup(posts) {
 
   postList.insertAdjacentHTML("afterbegin", markup);
 }
+
+// function getPostsById(id) {
+//   const userPosts = {};
+//   fetch("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => response.json())
+//     .then((json) => {
+//       const [{ name }] = json.filter(({ id: userId }) => userId === id);
+//       userPosts.id = id;
+//       userPosts.name = name;
+//       fetch("https://jsonplaceholder.typicode.com/posts")
+//         .then((response) => response.json())
+//         .then((json) => {
+//           userPosts.posts = json.filter(({ userId }) => userId === id);
+//           userPosts.id = id;
+//         });
+//     })
+//     .catch((error) => console.log(`No user found with this ${id}ID`));
+//   return userPosts;
+// }
+
+// console.log(getPostsById(4));
