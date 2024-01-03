@@ -20,23 +20,27 @@ function createMarkup(posts) {
   postList.insertAdjacentHTML("afterbegin", markup);
 }
 
-// function getPostsById(id) {
-//   const userPosts = {};
-//   fetch("https://jsonplaceholder.typicode.com/users")
-//     .then((response) => response.json())
-//     .then((json) => {
-//       const [{ name }] = json.filter(({ id: userId }) => userId === id);
-//       userPosts.id = id;
-//       userPosts.name = name;
-//       fetch("https://jsonplaceholder.typicode.com/posts")
-//         .then((response) => response.json())
-//         .then((json) => {
-//           userPosts.posts = json.filter(({ userId }) => userId === id);
-//           userPosts.id = id;
-//         });
-//     })
-//     .catch((error) => console.log(`No user found with this ${id}ID`));
-//   return userPosts;
-// }
+function getPostsById(id) {
+  const userPosts = {};
 
-// console.log(getPostsById(4));
+  return new Promise((resolve, reject) => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) => {
+        const foundUser = users.find((user) => user.id === id);
+        userPosts.id = foundUser.id;
+        userPosts.name = foundUser.name;
+        fetch("https://jsonplaceholder.typicode.com/posts")
+          .then((response) => response.json())
+          .then((users) => {
+            userPosts.posts = users.filter(({ userId }) => userId === id);
+            userPosts.id = id;
+
+            resolve(userPosts);
+          });
+      })
+      .catch((error) => console.log(`No user found with this ${id}ID`));
+  });
+}
+
+getPostsById(4).then((user) => console.log(user));
