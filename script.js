@@ -21,14 +21,17 @@ function createMarkup(posts) {
 }
 
 function getPostsById(id) {
-  const userPosts = {};
+  const userPosts = {
+    id,
+    name: "",
+    posts: [],
+  };
 
   return new Promise((resolve, reject) => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => {
-        const foundUser = users.find((user) => user.id === id);
-        userPosts.id = foundUser.id;
+        const foundUser = users.find(({ id: userId }) => userId === id);
         userPosts.name = foundUser.name;
         fetch("https://jsonplaceholder.typicode.com/posts")
           .then((response) => response.json())
@@ -43,4 +46,4 @@ function getPostsById(id) {
   });
 }
 
-getPostsById(4).then((user) => console.log(user));
+getPostsById(8).then((user) => console.log(user));
