@@ -1,4 +1,4 @@
-* {
+/* * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -59,4 +59,8 @@ a {
 .post-link {
   text-align: center;
   color: cornflowerblue;
+} */
+
+.hidden {
+  display: none;
 }
