@@ -61,6 +61,19 @@ a {
   color: cornflowerblue;
 } */
 
+.users-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+p {
+  margin: 0;
+}
+
 .hidden {
   display: none;
 }

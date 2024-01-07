@@ -16,7 +16,7 @@ async function createMarkup() {
     const users = await fetchUsers();
     const markup = users
       .map(({ name }) => {
-        return `<li class="list-item">${name}</li>`;
+        return `<li class="list-item"><p>${name}</p></li>`;
       })
       .join("");
     usersList.insertAdjacentHTML("beforeend", markup);
@@ -27,9 +27,9 @@ async function createMarkup() {
 
 function filterUsersByUserName(event) {
   const userListItem = document.getElementsByClassName("list-item");
-
   [...userListItem].forEach((user) => {
-    const userCondition = !user.innerHTML
+    console.log(user.textContent);
+    const userCondition = !user.textContent
       .toLowerCase()
       .includes(event.target.value.toLowerCase());
     if (userCondition) {
